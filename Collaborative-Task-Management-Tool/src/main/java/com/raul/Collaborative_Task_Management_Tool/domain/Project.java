@@ -12,8 +12,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity
-@Table
+//@Entity
+//@Table
 public class Project {
 
     @Id

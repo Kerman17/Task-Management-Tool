@@ -12,8 +12,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table
-@Entity
+//@Table
+//@Entity
 public class Notification {
 
     @Id
