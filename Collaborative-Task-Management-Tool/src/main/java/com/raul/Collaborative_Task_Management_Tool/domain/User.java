@@ -1,6 +1,8 @@
 package com.raul.Collaborative_Task_Management_Tool.domain;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.CurrentTimestamp;
 
 
 import java.util.Date;
@@ -13,10 +15,21 @@ public class User {
     @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     private Long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(unique = true, length = 100, nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String password_hash;
+
+    @Column(nullable = false)
     private String role;
+
+    @CreationTimestamp
+    @Column(updatable = false, name = "created_at")
     private Date created_at;
 
     public User() {

@@ -1,6 +1,7 @@
 package com.raul.Collaborative_Task_Management_Tool.domain;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
@@ -13,9 +14,18 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_id_seq")
     @SequenceGenerator(name = "project_id_seq", sequenceName = "project_id_seq", allocationSize = 1)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
+
+    @Column(nullable = false)
     private String description;
+
+    @Column(nullable = false)
     private String created_by;
+
+    @CreationTimestamp
+    @Column(nullable = false, name = "created_at")
     private Date created_at;
 
     public Project() {

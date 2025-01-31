@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
 
@@ -15,12 +16,26 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_id_seq")
     @SequenceGenerator(name = "task_id_seq", sequenceName = "task_id_seq", allocationSize = 1)
     private Long id;
+
+    @Column(nullable = false)
     private Long project_id;
+
+    @Column(nullable = false)
     private String description;
+
+    @Column(nullable = false)
     private String status;
+
+    @Column(nullable = false)
     private String priority;
+
+    @Column(nullable = false)
     private String assigned_to;
+
     private Date due_date;
+
+    @CreationTimestamp
+    @Column(nullable = false, name = "created_at")
     private Date created_at;
 
     public Task() {

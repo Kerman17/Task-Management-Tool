@@ -9,7 +9,6 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="Collaborative-Task-Management-Tool" value="6268e8e0-2a9b-4f49-89b5-e5b630dc28be" />
           <factory-entry name="entityManagerFactory" value="6268e8e0-2a9b-4f49-89b5-e5b630dc28be" />
         </datasource-mapping>
         <naming-strategy-map />
