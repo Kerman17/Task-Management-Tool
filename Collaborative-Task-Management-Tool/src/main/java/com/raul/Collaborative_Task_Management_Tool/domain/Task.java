@@ -1,9 +1,7 @@
 package com.raul.Collaborative_Task_Management_Tool.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
@@ -35,8 +33,16 @@ public class Task {
     private Date due_date;
 
     @CreationTimestamp
-    @Column(nullable = false, name = "created_at")
+    @Column(nullable = false)
     private Date created_at;
+
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @JsonBackReference // prevents circular reference
+    private User user;
+
+
 
     public Task() {
     }
@@ -124,6 +130,14 @@ public class Task {
 
     public void setCreated_at(Date created_at) {
         this.created_at = created_at;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

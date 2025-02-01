@@ -1,11 +1,14 @@
 package com.raul.Collaborative_Task_Management_Tool.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.CurrentTimestamp;
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -15,6 +18,7 @@ public class User {
     @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     private Long id;
+
 
     @Column(nullable = false)
     private String name;
@@ -31,6 +35,15 @@ public class User {
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
     private Date created_at;
+
+    @OneToMany(
+            mappedBy = "user",         // Point the field that owns the relationship in Task
+            cascade = CascadeType.ALL, // Each operation performed on the user will affect all the tasks in the database
+            orphanRemoval = true       // If we remove an user, all the tasks will be removed too
+    )
+    @JsonManagedReference // prevents circular reference
+    private List<Task> tasks = new ArrayList<>();
+
 
     public User() {
 
@@ -99,6 +112,14 @@ public class User {
 
     public void setCreated_at(Date created_at) {
         this.created_at = created_at;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
     }
 
     @Override

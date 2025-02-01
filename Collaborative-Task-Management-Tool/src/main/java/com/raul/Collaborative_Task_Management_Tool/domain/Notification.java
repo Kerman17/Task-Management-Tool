@@ -25,7 +25,7 @@ public class Notification {
     private String status;
 
     @CreationTimestamp
-    @Column(nullable = false, name = "created_at")
+    @Column(nullable = false)
     private Date created_at;
 
     public Notification() {

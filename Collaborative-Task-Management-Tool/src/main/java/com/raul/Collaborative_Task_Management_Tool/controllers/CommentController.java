@@ -2,12 +2,10 @@ package com.raul.Collaborative_Task_Management_Tool.controllers;
 
 import com.raul.Collaborative_Task_Management_Tool.domain.Comment;
 import com.raul.Collaborative_Task_Management_Tool.services.CommentService;
-import jakarta.persistence.Column;
-import org.hibernate.annotations.CreationTimestamp;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController

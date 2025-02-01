@@ -19,6 +19,28 @@ public class TaskController {
         this.taskService = taskService;
     }
 
+    @PostMapping("/user/{userId}")
+    public Task addTaskToUser(@PathVariable Long userId,
+                              @RequestBody Task task){
+
+       return taskService.addTaskToUser(userId, task);
+    }
+
+    @PutMapping("{taskId}/user/{userId}")
+    public void addTaskToUserByTaskId(@PathVariable Long userId,
+                                      @PathVariable Long taskId){
+
+         taskService.addTaskToUserByTaskId(userId, taskId);
+    }
+
+
+
+    @GetMapping("/user/{userId}")
+    public List<Task> getTasksByUser(@PathVariable Long userId){
+
+        return taskService.getTasksByUser(userId);
+    }
+
     @GetMapping
     public List<Task> getAllTasks(){
         return taskService.getAllTasks();
