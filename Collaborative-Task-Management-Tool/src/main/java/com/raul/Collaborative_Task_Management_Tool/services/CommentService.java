@@ -24,6 +24,22 @@ public class CommentService {
         this.taskRepository = taskRepository;
     }
 
+
+    // ENDPOINTS FOR COMMENT - TASK RELATIONSHIP vvv
+
+    public Comment addCommentToTask(Comment comment,
+                                    Long taskId){
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new ResourceNotFoundException("Task with id " + taskId + " does not exist"));
+
+        comment.setTask(task);
+
+        return commentRepository.save(comment);
+    }
+
+    // ENDPOINTS FOR COMMENT - TASK RELATIONSHIP ^^^
+
+
     public List<Comment> getAllComments(){
         return commentRepository.findAll();
     }

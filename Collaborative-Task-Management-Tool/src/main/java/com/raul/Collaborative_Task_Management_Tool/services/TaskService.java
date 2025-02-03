@@ -1,8 +1,10 @@
 package com.raul.Collaborative_Task_Management_Tool.services;
 
+import com.raul.Collaborative_Task_Management_Tool.domain.Project;
 import com.raul.Collaborative_Task_Management_Tool.domain.Task;
 import com.raul.Collaborative_Task_Management_Tool.domain.User;
 import com.raul.Collaborative_Task_Management_Tool.exceptions.ResourceNotFoundException;
+import com.raul.Collaborative_Task_Management_Tool.repositories.ProjectRepository;
 import com.raul.Collaborative_Task_Management_Tool.repositories.TaskRepository;
 import com.raul.Collaborative_Task_Management_Tool.repositories.UserRepository;
 import jakarta.transaction.Transactional;
@@ -18,8 +20,17 @@ public class TaskService {
 
     private final UserRepository userRepository;
 
+    private final ProjectRepository projectRepository;
 
+    // CONSTRUCTOR
 
+    public TaskService(TaskRepository taskRepository, UserRepository userRepository, ProjectRepository projectRepository) {
+        this.taskRepository = taskRepository;
+        this.userRepository = userRepository;
+        this.projectRepository = projectRepository;
+    }
+
+    // ---- ENDPOINTS FOR USER - TASK RELATIONSHIP
     // ADDS NEW TASK TO USER, TASK BODY NEEDS TO BE PROVIDED AS JSON
     public Task addTaskToUser(Long userId, Task task){
 
@@ -42,9 +53,13 @@ public class TaskService {
                 .orElseThrow(() -> new ResourceNotFoundException("Task with id " + taskId + " doesnt exist"));
 
         task.setUser(user);
+
+        task.setAssigned_to(user.getName());
+
+        taskRepository.save(task);
     }
 
-    // GETS ALL TAKS OF THE USER BY USER ID
+    // GETS ALL TASKS OF THE USER BY USER ID
     public List<Task> getTasksByUser(Long userId){
 
         userRepository.findById(userId)
@@ -53,13 +68,60 @@ public class TaskService {
         return taskRepository.findByUserId(userId);
     }
 
-    // CONSTRUCTOR
+    // MOVE TASK FROM USER1 TO USER2
 
-    public TaskService(TaskRepository taskRepository, UserRepository userRepository) {
-        this.taskRepository = taskRepository;
-        this.userRepository = userRepository;
+    @Transactional
+    public void moveTaskFromUser1ToUser2(Long taskId, Long userid2){
+
+        User user2 = userRepository.findById(userid2)
+                .orElseThrow(() -> new ResourceNotFoundException("User with id " + userid2 + " doesnt exist"));
+
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new ResourceNotFoundException("Task with id " + taskId + " doesnt exist"));
+
+        task.setUser(user2);
+
     }
 
+    // ---- ENDPOINTS FOR USER - TASK RELATIONSHIP
+
+    // -----------------------------------------------------------------------
+
+    // ---- ENDPOINTS FOR PROJECT - TASK RELATIONSHIP
+
+    public void addTaskToProject(Task task, Long projectId){
+        Project project = projectRepository.findById(projectId)
+                .orElseThrow(() -> new ResourceNotFoundException("Project with id " + projectId + " doesnt exist"));
+
+        task.setProject(project);
+
+        taskRepository.save(task);
+    }
+
+    public void addTaskToProjectByTaskId(Long taskId, Long projectId){
+
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new ResourceNotFoundException("Task with id " + taskId + " doesnt exist"));
+
+        Project project = projectRepository.findById(projectId)
+                .orElseThrow(() -> new ResourceNotFoundException("Project with id " + projectId + " doesnt exist"));
+
+        task.setProject(project);
+
+        taskRepository.save(task);
+
+    }
+
+    public List<Task> getTasksByProjectId(Long projectId){
+        Project project = projectRepository.findById(projectId)
+                .orElseThrow(() -> new ResourceNotFoundException("Project with id " + projectId + " doesnt exist"));
+
+        return taskRepository.findByProjectId(projectId);
+    }
+
+
+
+    // ---- ENDPOINTS FOR TASK
     // GETS ALL EXISTING TASKS
     public List<Task> getAllTasks(){
         return taskRepository.findAll();
@@ -105,4 +167,8 @@ public class TaskService {
         task.setAssigned_to(assigned_to);
         task.setDue_date(due_date);
     }
+
+    // ---- ENDPOINTS FOR TASK
+
+
 }

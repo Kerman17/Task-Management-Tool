@@ -3,7 +3,6 @@ package com.raul.Collaborative_Task_Management_Tool.domain;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.CurrentTimestamp;
 
 
 import java.util.ArrayList;
@@ -18,7 +17,6 @@ public class User {
     @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     private Long id;
-
 
     @Column(nullable = false)
     private String name;
@@ -43,6 +41,15 @@ public class User {
     )
     @JsonManagedReference // prevents circular reference
     private List<Task> tasks = new ArrayList<>();
+
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference
+    private List<Notification> notifications = new ArrayList<>();
 
 
     public User() {
@@ -120,6 +127,14 @@ public class User {
 
     public List<Task> getTasks() {
         return tasks;
+    }
+
+    public List<Notification> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<Notification> notifications) {
+        this.notifications = notifications;
     }
 
     @Override

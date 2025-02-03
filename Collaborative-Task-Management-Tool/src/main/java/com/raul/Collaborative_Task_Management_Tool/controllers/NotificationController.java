@@ -18,6 +18,20 @@ public class NotificationController {
         this.notificationService = notificationService;
     }
 
+    // ENDPOINTS FOR USER - NOTIFICATION RELATIONSHIP
+
+
+    @PutMapping("{notifId}/user/{userId}")
+    public void addNotificationToUser(@PathVariable Long notifId,
+                                      @PathVariable Long userId){
+
+        notificationService.addNotificationToUser(notifId, userId);
+    }
+
+
+    // ENDPOINTS FOR USER - NOTIFICATION RELATIONSHIP
+
+
     @GetMapping
     public List<Notification> getAllNotifications(){
         return notificationService.getAllNotifications();

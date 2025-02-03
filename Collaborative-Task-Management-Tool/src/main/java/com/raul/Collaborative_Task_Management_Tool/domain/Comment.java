@@ -1,5 +1,6 @@
 package com.raul.Collaborative_Task_Management_Tool.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -16,9 +17,6 @@ public class Comment {
     private Long id;
 
     @Column(nullable = false)
-    private Long task_id;
-
-    @Column(nullable = false)
     private String comment_text;
 
     @Column(nullable = false)
@@ -28,20 +26,24 @@ public class Comment {
     @CreationTimestamp
     private Date commented_at;
 
+    @ManyToOne
+    @JoinColumn(name = "task_id")
+    @JsonBackReference
+    private Task task;
+
 
     public Comment() {
     }
 
-    public Comment(Long task_id, String comment_text, String commented_by, Date commented_at) {
-        this.task_id = task_id;
+    public Comment( String comment_text, String commented_by, Date commented_at) {
+
         this.comment_text = comment_text;
         this.commented_by = commented_by;
         this.commented_at = commented_at;
     }
 
-    public Comment(Long id, Long task_id, String comment_text, String commented_by, Date commented_at) {
+    public Comment(Long id, String comment_text, String commented_by, Date commented_at) {
         this.id = id;
-        this.task_id = task_id;
         this.comment_text = comment_text;
         this.commented_by = commented_by;
         this.commented_at = commented_at;
@@ -55,13 +57,9 @@ public class Comment {
         this.id = id;
     }
 
-    public Long getTask_id() {
-        return task_id;
-    }
 
-    public void setTask_id(Long task_id) {
-        this.task_id = task_id;
-    }
+
+
 
     public String getComment_text() {
         return comment_text;
@@ -87,11 +85,18 @@ public class Comment {
         this.commented_at = commented_at;
     }
 
+    public Task getTask() {
+        return task;
+    }
+
+    public void setTask(Task task) {
+        this.task = task;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +
                 "id=" + id +
-                ", task_id=" + task_id +
                 ", comment_text='" + comment_text + '\'' +
                 ", commented_by='" + commented_by + '\'' +
                 ", commented_at=" + commented_at +

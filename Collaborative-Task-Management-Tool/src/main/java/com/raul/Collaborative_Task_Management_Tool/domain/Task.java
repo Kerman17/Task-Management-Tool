@@ -1,10 +1,14 @@
 package com.raul.Collaborative_Task_Management_Tool.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "tasks")
@@ -15,8 +19,8 @@ public class Task {
     @SequenceGenerator(name = "task_id_seq", sequenceName = "task_id_seq", allocationSize = 1)
     private Long id;
 
-    @Column(nullable = false)
-    private Long project_id;
+//    @Column(nullable = false)
+//    private Long project_id;
 
     @Column(nullable = false)
     private String description;
@@ -43,12 +47,23 @@ public class Task {
     private User user;
 
 
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    @JsonIgnore
+    private Project project;
+
+    @OneToMany(
+            mappedBy = "task",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonManagedReference
+    private List<Comment> comments = new ArrayList<>();
 
     public Task() {
     }
 
-    public Task(Long project_id, String description, String status, String priority, String assigned_to, Date due_date, Date created_at) {
-        this.project_id = project_id;
+    public Task(String description, String status, String priority, String assigned_to, Date due_date, Date created_at) {
         this.description = description;
         this.status = status;
         this.priority = priority;
@@ -57,9 +72,8 @@ public class Task {
         this.created_at = created_at;
     }
 
-    public Task(Long id, Long project_id, String description, String status, String priority, String assigned_to, Date due_date, Date created_at) {
+    public Task(Long id, String description, String status, String priority, String assigned_to, Date due_date, Date created_at) {
         this.id = id;
-        this.project_id = project_id;
         this.description = description;
         this.status = status;
         this.priority = priority;
@@ -74,14 +88,6 @@ public class Task {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getProject_id() {
-        return project_id;
-    }
-
-    public void setProject_id(Long project_id) {
-        this.project_id = project_id;
     }
 
     public String getDescription() {
@@ -140,11 +146,26 @@ public class Task {
         this.user = user;
     }
 
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
                 "id=" + id +
-                ", project_id=" + project_id +
                 ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
                 ", priority='" + priority + '\'' +

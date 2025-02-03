@@ -19,6 +19,20 @@ public class CommentController {
         this.commentService = commentService;
     }
 
+
+    // ENDPOINTS FOR COMMENT - TASK RELATIONSHIP vvv
+
+    @PostMapping("task/{taskId}")
+    public Comment addCommentToTask(@RequestBody Comment comment,
+                                    @PathVariable Long taskId){
+
+        return commentService.addCommentToTask(comment, taskId);
+    }
+
+
+    // ENDPOINTS FOR COMMENT - TASK RELATIONSHIP ^^^
+
+
     @GetMapping
     public List<Comment> getAllComments(){
         return commentService.getAllComments();

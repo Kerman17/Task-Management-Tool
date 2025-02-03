@@ -1,5 +1,7 @@
 package com.raul.Collaborative_Task_Management_Tool.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -27,6 +29,11 @@ public class Notification {
     @CreationTimestamp
     @Column(nullable = false)
     private Date created_at;
+
+    @ManyToOne
+    @JoinColumn(name = "notification_id")
+    @JsonBackReference
+    private User user;
 
     public Notification() {
     }
@@ -76,6 +83,14 @@ public class Notification {
 
     public void setCreated_at(Date created_at) {
         this.created_at = created_at;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

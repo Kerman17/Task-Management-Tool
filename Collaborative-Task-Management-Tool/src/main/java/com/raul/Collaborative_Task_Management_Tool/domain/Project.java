@@ -1,9 +1,13 @@
 package com.raul.Collaborative_Task_Management_Tool.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -27,6 +31,14 @@ public class Project {
     @CreationTimestamp
     @Column(nullable = false, name = "created_at")
     private Date created_at;
+
+    @OneToMany(
+            mappedBy = "project",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @JsonIgnore
+    private List<Task> tasks = new ArrayList<>();
 
     public Project() {
 
@@ -85,6 +97,14 @@ public class Project {
 
     public void setCreated_at(Date created_at) {
         this.created_at = created_at;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     @Override
