@@ -3,6 +3,7 @@ package com.raul.Collaborative_Task_Management_Tool.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Builder;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
@@ -10,11 +11,12 @@ import java.util.Date;
 
 @Table
 @Entity(name = "notifications")
+@Builder
 public class Notification {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "notification_id_seq")
-    @SequenceGenerator(name = "notofication_id_seq", sequenceName = "notification_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "notification_id_seq", sequenceName = "notification_id_seq", allocationSize = 1)
     private Long id;
 
     @Column(nullable = false)

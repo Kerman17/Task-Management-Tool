@@ -2,7 +2,11 @@ package com.raul.Collaborative_Task_Management_Tool.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 import org.hibernate.annotations.CreationTimestamp;
+
 
 
 import java.util.ArrayList;
@@ -11,6 +15,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
+@Builder
 public class User {
 
     @Id
@@ -21,6 +26,7 @@ public class User {
     @Column(nullable = false)
     private String name;
 
+    @Email
     @Column(unique = true, length = 100, nullable = false)
     private String email;
 
@@ -148,4 +154,8 @@ public class User {
                 ", created_at=" + created_at +
                 '}';
     }
+
+
+
+
 }

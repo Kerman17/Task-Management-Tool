@@ -112,11 +112,11 @@ public class TaskService {
 
     }
 
-    public List<Task> getTasksByProjectId(Long projectId){
+    public void getTasksByProjectId(Long projectId){
         Project project = projectRepository.findById(projectId)
                 .orElseThrow(() -> new ResourceNotFoundException("Project with id " + projectId + " doesnt exist"));
 
-        return taskRepository.findByProjectId(projectId);
+        taskRepository.findByProjectId(projectId);
     }
 
 

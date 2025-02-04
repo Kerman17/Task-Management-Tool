@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.Size;
+import lombok.Builder;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.ArrayList;
@@ -12,6 +15,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "tasks")
+@Builder
 public class Task {
 
     @Id
@@ -21,6 +25,7 @@ public class Task {
 
 //    @Column(nullable = false)
 //    private Long project_id;
+
 
     @Column(nullable = false)
     private String description;
@@ -34,6 +39,7 @@ public class Task {
     @Column(nullable = false)
     private String assigned_to;
 
+    @FutureOrPresent(message = "Due date must be in the present or future")
     private Date due_date;
 
     @CreationTimestamp

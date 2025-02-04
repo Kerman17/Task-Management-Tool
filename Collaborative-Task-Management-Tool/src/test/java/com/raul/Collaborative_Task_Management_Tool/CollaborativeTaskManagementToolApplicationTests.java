@@ -3,11 +3,13 @@ package com.raul.Collaborative_Task_Management_Tool;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class CollaborativeTaskManagementToolApplicationTests {
+@SpringBootTest // integration test - start up our application
+public class CollaborativeTaskManagementToolApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads(){
+        // 1.52.56
+    }
+
 
 }

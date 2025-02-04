@@ -7,12 +7,9 @@ import com.raul.Collaborative_Task_Management_Tool.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import java.nio.file.ReadOnlyFileSystemException;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class UserService {
@@ -69,7 +66,5 @@ public class UserService {
 
 
     }
-
-
 
 }

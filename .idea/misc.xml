@@ -5,6 +5,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/Collaborative-Task-Management-Tool/pom.xml" />
+        <option value="$PROJECT_DIR$/Collaborative-Task-Management-Tool/src/test/pom.xml" />
       </list>
     </option>
   </component>
