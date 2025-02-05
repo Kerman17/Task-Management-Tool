@@ -3,6 +3,7 @@ package com.raul.Collaborative_Task_Management_Tool.controllers;
 import com.raul.Collaborative_Task_Management_Tool.domain.Project;
 import com.raul.Collaborative_Task_Management_Tool.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class ProjectController {
         return projectService.getAllProjects();
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public void addNewProject(@RequestBody Project project){
         projectService.addProject(project);
     }

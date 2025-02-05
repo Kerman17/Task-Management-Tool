@@ -2,9 +2,7 @@
 <module type="JAVA_MODULE" version="4">
   <component name="AdditionalModuleElements">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/Collaborative-Task-Management-Tool/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Collaborative-Task-Management-Tool/src/test/java" type="java-test-resource" />
-      <excludeFolder url="file://$MODULE_DIR$/Collaborative-Task-Management-Tool/src/test" />
+      <sourceFolder url="file://$MODULE_DIR$/Collaborative-Task-Management-Tool/src/test" isTestSource="true" />
     </content>
   </component>
   <component name="FacetManager">

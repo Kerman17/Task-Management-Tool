@@ -1,5 +1,6 @@
 package com.raul.Collaborative_Task_Management_Tool.services;
 
+import com.raul.Collaborative_Task_Management_Tool.dao.ProjectDao;
 import com.raul.Collaborative_Task_Management_Tool.domain.Project;
 import com.raul.Collaborative_Task_Management_Tool.exceptions.ResourceNotFoundException;
 import com.raul.Collaborative_Task_Management_Tool.repositories.ProjectRepository;
@@ -20,32 +21,33 @@ public class ProjectService {
 //    private String created_by;
 //    private Date created_at;
 
-    private final ProjectRepository projectRepository;
+    private final ProjectDao projectDao;
 
     @Autowired
-    public ProjectService(ProjectRepository projectRepository) {
-        this.projectRepository = projectRepository;
+    public ProjectService(ProjectDao projectDao) {
+        this.projectDao = projectDao;
     }
 
     public List<Project> getAllProjects(){
-        return projectRepository.findAll();
+        return projectDao.getAllProjects();
     }
 
     public Project getProjectById(Long projectId){
 
-        return projectRepository.findById(projectId)
+
+        return projectDao.getProjectById(projectId)
                 .orElseThrow(() -> new ResourceNotFoundException("Project with id: " + projectId + " does not exist"));
     }
 
     public void addProject(Project project){
-        projectRepository.save(project);
+        projectDao.saveProject(project);
     }
 
     public void deleteProjectById(Long id){
-        Project project = projectRepository.findById(id)
+        Project project = projectDao.getProjectById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("The Project with id " + id + " does not exist"));
 
-        projectRepository.deleteById(id);
+        projectDao.deleteProjectById(id);
 
     }
 
@@ -54,7 +56,7 @@ public class ProjectService {
                               String name,
                               String description){
 
-        Project project = projectRepository.findById(id).
+        Project project = projectDao.getProjectById(id).
                 orElseThrow(() -> new ResourceNotFoundException("Project with id " + id + " does not exist"));
 
         if(name!=null && name.length()>0 &&
@@ -62,6 +64,8 @@ public class ProjectService {
             project.setName(name);
             project.setDescription(description);
         }
+
+        projectDao.saveProject(project);
 
     }
 

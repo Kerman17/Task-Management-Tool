@@ -1,9 +1,9 @@
 package com.raul.Collaborative_Task_Management_Tool.services;
 
 
+import com.raul.Collaborative_Task_Management_Tool.dao.UserDao;
 import com.raul.Collaborative_Task_Management_Tool.domain.User;
 import com.raul.Collaborative_Task_Management_Tool.exceptions.ResourceNotFoundException;
-import com.raul.Collaborative_Task_Management_Tool.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,36 +14,31 @@ import java.util.List;
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
+    private final UserDao userDao;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     public User findUserById(Long id){
-        return userRepository.findById(id)
+        return userDao.findUserById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User with id: " + id + " does not exist"));
     }
 
     public List<User> getAllUsers(){
-        return userRepository.findAll();
+        return userDao.getAllUsers();
     }
 
     public void addNewUser(User user){
-        userRepository.save(user);
+        userDao.saveUser(user);
     }
 
     public void deleteUserById(Long id){
-        boolean exists = userRepository.existsById(id);
+        userDao.findUserById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User with id: " + id + " does not exist"));
 
-        if(!exists){
-            throw new IllegalStateException(
-                    "User with id " + id + " does not exist"
-            );
-        }
-
-        userRepository.deleteById(id);
+        userDao.deleteUserById(id);
     }
 
     @Transactional
@@ -52,7 +47,7 @@ public class UserService {
                            String email,
                            String role){
 
-        User user = userRepository.findById(userId).orElseThrow(()
+        User user = userDao.findUserById(userId).orElseThrow(()
         -> new IllegalStateException("User with id: " + userId + " does not exist!"));
 
         if(name!=null && name.length()>0
@@ -64,6 +59,7 @@ public class UserService {
             user.setRole(role);
         }
 
+        userDao.saveUser(user);
 
     }
 

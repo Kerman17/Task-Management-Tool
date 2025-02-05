@@ -1,10 +1,10 @@
 package com.raul.Collaborative_Task_Management_Tool.services;
 
+import com.raul.Collaborative_Task_Management_Tool.dao.NotificationDao;
+import com.raul.Collaborative_Task_Management_Tool.dao.UserDao;
 import com.raul.Collaborative_Task_Management_Tool.domain.Notification;
 import com.raul.Collaborative_Task_Management_Tool.domain.User;
 import com.raul.Collaborative_Task_Management_Tool.exceptions.ResourceNotFoundException;
-import com.raul.Collaborative_Task_Management_Tool.repositories.NotificationRepository;
-import com.raul.Collaborative_Task_Management_Tool.repositories.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,14 +14,15 @@ import java.util.List;
 @Service
 public class NotificationService {
 
-    private final NotificationRepository notificationRepository;
+    private final NotificationDao notificationDao;
 
-    private final UserRepository userRepository;
+    private final UserDao userDao;
+
 
     @Autowired
-    public NotificationService(NotificationRepository notificationRepository, UserRepository userRepository) {
-        this.notificationRepository = notificationRepository;
-        this.userRepository = userRepository;
+    public NotificationService(NotificationDao notificationDao, UserDao userDao) {
+        this.notificationDao = notificationDao;
+        this.userDao = userDao;
     }
 
     // ENDPOINTS FOR USER - NOTIFICATION RELATIONSHIP
@@ -29,16 +30,17 @@ public class NotificationService {
     public void addNotificationToUser(Long notifId,
                                       Long userId){
 
-        User user = userRepository.findById(userId)
+        User user = userDao.findUserById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User with id " + userId + " does not exist"));
 
-        Notification notification = notificationRepository.findById(notifId)
+        Notification notification = notificationDao.getNotificationById(notifId)
                 .orElseThrow(() -> new ResourceNotFoundException("User with id " + notifId + " does not exist"));
 
+        notification.setUser_id(user.getId());
 
         notification.setUser(user);
 
-        notificationRepository.save(notification);
+        notificationDao.saveNotification(notification);
 
     }
 
@@ -48,24 +50,24 @@ public class NotificationService {
 
 
     public List<Notification> getAllNotifications(){
-        return notificationRepository.findAll();
+        return notificationDao.getAllNotifications();
     }
 
     public Notification getNotificationById(Long id){
-        return notificationRepository.findById(id)
+        return notificationDao.getNotificationById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("Notification with id " + id + " does not exist"));
     }
 
     public void addNotification(Notification notification){
-        notificationRepository.save(notification);
+        notificationDao.saveNotification(notification);
     }
 
     public void deleteNotificationById(Long id){
 
-        notificationRepository.findById(id)
+        notificationDao.getNotificationById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Notification with id " + id + " does not exist"));
 
-        notificationRepository.deleteById(id);
+        notificationDao.deleteNotificationById(id);
     }
 
     @Transactional
@@ -74,7 +76,7 @@ public class NotificationService {
                                    String message,
                                    String status){
 
-        Notification notification = notificationRepository.findById(id)
+        Notification notification = notificationDao.getNotificationById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Notification with id " + id + " does not exist"));
 
         if(user_id!=null && user_id>0 &&

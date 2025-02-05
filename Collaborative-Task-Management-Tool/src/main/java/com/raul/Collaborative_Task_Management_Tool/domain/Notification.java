@@ -19,7 +19,7 @@ public class Notification {
     @SequenceGenerator(name = "notification_id_seq", sequenceName = "notification_id_seq", allocationSize = 1)
     private Long id;
 
-    @Column(nullable = false)
+    @Column
     private Long user_id;
 
     @Column(nullable = false)

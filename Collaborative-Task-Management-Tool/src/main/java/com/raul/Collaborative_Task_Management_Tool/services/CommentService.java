@@ -1,10 +1,10 @@
 package com.raul.Collaborative_Task_Management_Tool.services;
 
+import com.raul.Collaborative_Task_Management_Tool.dao.CommentDao;
+import com.raul.Collaborative_Task_Management_Tool.dao.TaskDao;
 import com.raul.Collaborative_Task_Management_Tool.domain.Comment;
 import com.raul.Collaborative_Task_Management_Tool.domain.Task;
 import com.raul.Collaborative_Task_Management_Tool.exceptions.ResourceNotFoundException;
-import com.raul.Collaborative_Task_Management_Tool.repositories.CommentRepository;
-import com.raul.Collaborative_Task_Management_Tool.repositories.TaskRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,14 +14,15 @@ import java.util.List;
 @Service
 public class CommentService {
 
-    private final CommentRepository commentRepository;
-    private final TaskRepository taskRepository;
+    private final CommentDao commentDao;
+    private final TaskDao taskDao;
+
 
 
     @Autowired
-    public CommentService(CommentRepository commentRepository, TaskRepository taskRepository) {
-        this.commentRepository = commentRepository;
-        this.taskRepository = taskRepository;
+    public CommentService(CommentDao commentDao, TaskDao taskDao) {
+        this.commentDao = commentDao;
+        this.taskDao = taskDao;
     }
 
 
@@ -29,37 +30,37 @@ public class CommentService {
 
     public Comment addCommentToTask(Comment comment,
                                     Long taskId){
-        Task task = taskRepository.findById(taskId)
+        Task task = taskDao.findTaskById(taskId)
                 .orElseThrow(() -> new ResourceNotFoundException("Task with id " + taskId + " does not exist"));
 
         comment.setTask(task);
 
-        return commentRepository.save(comment);
+        return commentDao.saveComment(comment);
     }
 
     // ENDPOINTS FOR COMMENT - TASK RELATIONSHIP ^^^
 
 
     public List<Comment> getAllComments(){
-        return commentRepository.findAll();
+        return commentDao.getAllComments();
     }
 
     public Comment getCommentById(Long id){
-        return commentRepository.findById(id)
+        return commentDao.getCommentById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Comment with id: " + id + " does not exist"));
 
     }
 
     public void addNewComment(Comment comment){
-        commentRepository.save(comment);
+        commentDao.saveComment(comment);
     }
 
     public void deleteCommentById(Long id){
 
-        commentRepository.findById(id)
+        commentDao.getCommentById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Comment with id: " + id + " does not exist"));
 
-        commentRepository.deleteById(id);
+        commentDao.deleteCommentById(id);
 
     }
 
@@ -69,10 +70,10 @@ public class CommentService {
                               String comment_text,
                               String commented_by){
 
-        Comment comment = commentRepository.findById(comment_id)
+        Comment comment = commentDao.getCommentById(comment_id)
                 .orElseThrow(() -> new ResourceNotFoundException("Comment with id: " + comment_id + " does not exist"));
 
-        Task task = taskRepository.findById(task_id)
+        Task task = taskDao.findTaskById(task_id)
                 .orElseThrow(() -> new ResourceNotFoundException("Task with id: " + task_id + " does not exist"));
 
 

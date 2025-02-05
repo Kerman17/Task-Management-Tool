@@ -36,8 +36,6 @@ public class UserDaoImplTests {
                 "Admin",
                 new Date());
 
-        underTest.create(user);
-
 
         verify(jdbcTemplate).update(
                 eq("INSERT INTO users (id, name, email, password_hash, role, created_at) VALUES (?, ?, ?, ?, ?, ?)"),

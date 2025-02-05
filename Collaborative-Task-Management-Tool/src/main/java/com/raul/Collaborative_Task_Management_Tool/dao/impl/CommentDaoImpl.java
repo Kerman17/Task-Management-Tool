@@ -1,14 +1,40 @@
 package com.raul.Collaborative_Task_Management_Tool.dao.impl;
 
 import com.raul.Collaborative_Task_Management_Tool.dao.CommentDao;
-import org.springframework.jdbc.core.JdbcTemplate;
+import com.raul.Collaborative_Task_Management_Tool.domain.Comment;
+import com.raul.Collaborative_Task_Management_Tool.repositories.CommentRepository;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
+
+@Repository
 public class CommentDaoImpl implements CommentDao {
 
-    private final JdbcTemplate jdbcTemplate;
+    private final CommentRepository commentRepository;
 
-    public CommentDaoImpl(final JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public CommentDaoImpl(CommentRepository commentRepository) {
+        this.commentRepository = commentRepository;
     }
 
+    @Override
+    public List<Comment> getAllComments() {
+        return commentRepository.findAll();
+    }
+
+    @Override
+    public Optional<Comment> getCommentById(Long id) {
+        return commentRepository.findById(id);
+    }
+
+    @Override
+    public void deleteCommentById(Long id) {
+        commentRepository.deleteById(id);
+    }
+
+    @Override
+    public Comment saveComment(Comment comment) {
+        commentRepository.save(comment);
+        return comment;
+    }
 }
