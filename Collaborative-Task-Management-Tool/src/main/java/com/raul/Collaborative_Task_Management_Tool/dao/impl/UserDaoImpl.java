@@ -42,4 +42,11 @@ public class UserDaoImpl implements UserDao {
     public void updateUser(Long userId, String name, String email, String role) {
 
     }
+
+    @Override
+    public Optional<User> findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+
 }

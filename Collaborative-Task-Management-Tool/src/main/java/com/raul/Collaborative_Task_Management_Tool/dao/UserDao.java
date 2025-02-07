@@ -16,5 +16,7 @@ public interface UserDao {
                            String email,
                            String role);
 
+     Optional<User> findUserByEmail(String email);
+
 
 }

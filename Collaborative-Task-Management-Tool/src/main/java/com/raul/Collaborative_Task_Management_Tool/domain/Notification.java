@@ -1,9 +1,9 @@
 package com.raul.Collaborative_Task_Management_Tool.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
-import lombok.Builder;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.Date;
@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Table
 @Entity(name = "notifications")
-@Builder
+
 public class Notification {
 
     @Id

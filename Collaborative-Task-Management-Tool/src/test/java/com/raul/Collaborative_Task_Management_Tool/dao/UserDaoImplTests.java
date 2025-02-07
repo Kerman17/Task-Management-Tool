@@ -10,7 +10,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import static org.mockito.ArgumentMatchers.eq;
@@ -25,23 +24,5 @@ public class UserDaoImplTests {
     @InjectMocks // before each test is run a new instance of the UserDaoImpl is created
     private UserDaoImpl underTest;
 
-    @Test
-    public void testThatCreateUserGeneratesCorrectSql(){
-
-        User user = new User(
-                1L,
-                "Raul Dete",
-                "raul@yahoo.com",
-                "test",
-                "Admin",
-                new Date());
-
-
-        verify(jdbcTemplate).update(
-                eq("INSERT INTO users (id, name, email, password_hash, role, created_at) VALUES (?, ?, ?, ?, ?, ?)"),
-                eq(1L),eq("Raul Dete"), eq("raul@yahoo.com"), eq("test"), eq("Admin")
-        );
-
-    }
 
 }

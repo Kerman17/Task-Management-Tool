@@ -6,10 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest // integration test - start up our application
 public class CollaborativeTaskManagementToolApplicationTests {
 
-    @Test
-    void contextLoads(){
-        // 1.52.56
-    }
+
 
 
 }

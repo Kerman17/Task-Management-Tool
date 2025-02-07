@@ -3,8 +3,8 @@ package com.raul.Collaborative_Task_Management_Tool.domain;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 
@@ -155,7 +155,14 @@ public class User {
                 '}';
     }
 
-
-
-
+    public User(Long id, String name, String email, String password_hash, String role, Date created_at, List<Task> tasks, List<Notification> notifications) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password_hash = password_hash;
+        this.role = role;
+        this.created_at = created_at;
+        this.tasks = tasks;
+        this.notifications = notifications;
+    }
 }
