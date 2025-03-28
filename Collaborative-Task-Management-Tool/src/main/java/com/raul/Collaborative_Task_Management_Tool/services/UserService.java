@@ -6,9 +6,7 @@ import com.raul.Collaborative_Task_Management_Tool.domain.User;
 import com.raul.Collaborative_Task_Management_Tool.exceptions.ResourceNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +14,7 @@ import java.util.Optional;
 
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
 
     private final UserDao userDao;
 
@@ -25,22 +23,7 @@ public class UserService implements UserDetailsService {
         this.userDao = userDao;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userDao.findUserByEmail(username);
-        if(user.isPresent()){
 
-            var userObj = user.get();
-            return (UserDetails) User.builder()
-                    .name(userObj.getName())
-                    .password_hash(userObj.getPassword_hash())
-                    .role(userObj.getRole())
-                    .email(userObj.getEmail())
-                    .build();
-        }else{
-            throw new UsernameNotFoundException(username);
-        }
-    }
 
 
     public User findUserById(Long id){
