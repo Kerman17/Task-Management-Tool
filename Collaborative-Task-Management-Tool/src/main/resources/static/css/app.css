@@ -90,6 +90,7 @@ header h1 {
 .right-container h2 {
     font-size: 4rem;
     margin: 5% 0 0 0;
+    text-decoration: underline;
 }
 
 .right-container h3 {
@@ -190,4 +191,132 @@ header h1 {
 
 .line {
     color: black;
+}
+
+@media only screen and (max-width: 1350px) {
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    .left-container h2 {
+        font-size: 32px;
+        margin-top: 0;
+    }
+
+    .left-container p {
+        font-size: 20px;
+        width: 110%;
+        text-align: center;
+    }
+
+
+    body {
+        background-size: auto;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .right-container {
+        margin-top: 64px;
+    }
+
+    .right-container h2 {
+        font-size: 30px;
+    }
+
+    .right-container h3 {
+        font-size: 18px;
+    }
+
+    .right-container::before {
+        content: "";
+        width: 110%;
+        height: 93%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .right-container h3 {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 620px) {
+    header h1 {
+        font-size: 28px;
+    }
+
+    .left-container h2 {
+        font-size: 28px;
+        margin-top: 0;
+    }
+
+    .left-container p {
+        font-size: 18px;
+        width: 110%;
+        text-align: center;
+    }
+
+
+    body {
+        background-size: auto;
+    }
+
+    .right-container {
+        margin-top: 60px;
+    }
+
+    .right-container h2 {
+        font-size: 24px;
+    }
+
+    .right-container h3 {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .right-container h3 a {
+        display: inline-block;
+    }
+
+    .right-container::before {
+        content: "";
+        width: 200px;
+        height: 90%;
+        padding-right: 20px;
+    }
+
+    .credentials-enter .label-pass {
+        font-size: 18px;
+    }
+
+    .credentials-enter .label-email {
+        font-size: 18px;
+    }
+
+    .credentials-enter .email-input,
+    .pass-input {
+        width: 70%;
+    }
+
+    .right-container .credentials-enter {
+        width: 200px;
+    }
+
+    .login-forget .login-btn {
+        width: 65%;
+    }
+
+    .login-forget .forgot-pass {
+        font-size: 14px;
+    }
+
+    .login-forget p a,
+    footer {
+        font-size: 13px;
+    }
 }
