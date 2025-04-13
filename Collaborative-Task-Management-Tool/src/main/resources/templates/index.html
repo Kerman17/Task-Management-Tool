@@ -4,61 +4,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/app.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles/index.css">
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <title>Welcome</title>
+    <title>Task Management</title>
 </head>
 
 <body>
-    <header>
-        <h1>Your Company Name Here</h1>
-    </header>
 
-    <div class="container">
-        <div class="left-container">
-            <h2>Welcome <span class="special">Back</span></h2>
-            <p>Access your account and pick up where you left off.</p>
-            <div class="link-images">
-                <a href="https://www.instagram.com"><img class="images-left" src="/static/images/insta-icon.png" alt=""></a>
-                <a href="https://www.facebook.com"><img class="images-left" src="/static/images/facebook-icon.png" alt=""></a>
-                <a href="https://www.twitter.com"><img class="images-left" src="/static/images/twitter-icon.png" alt=""></a>
-                <a href="https://www.youtube.com"><img class="images-left" src="/static/images/youtube-icon.png" alt=""></a>
+    <div class="layout">
+        <aside class="left-aside">
+            <p>Placeholder</p>
+            <p class="p-dashboard">Dashboard</p>
+            <div class="dashboard">
+                <ul>
+                    <a href="">
+                        <li class="selected">Home</li>
+                    </a>
+                    <a href="#Option2" class="js-projects">
+                        <li>Projects</li>
+                    </a>
+                    <a href="#Option3">
+                        <li>Option 3</li>
+                    </a>
+                    <a href="#Option4">
+                        <li>My Tasks</li>
+                    </a>
+                    <a href="#Option5">
+                        <li>Option 5</li>
+                    </a>
+                </ul>
             </div>
-        </div>
+        </aside>
 
-        <div class="right-container">
-            <div class="login-card"></div>
-            <h2>Sign In</h2>
-            <h3>Don't Have An Account? <a class="create-account" href="register.html">Create Account
-                    Now</a></h3>
-            <div class="credentials-enter">
-                <label class="label-email" for="email-input">Email address</label>
-                <input id="email-input" class="email-input" type="email" placeholder="Enter your email">
-                <label class="label-pass" for="pass-input">Password</label>
-                <input id="pass-input" class="pass-input" type="password" placeholder="Enter your password">
-
-                <label class="remember-me-label" for="remember-me">
-                    <input id="remember-me" class="remember-me" type="checkbox"> <a href="#t">Remember me for 2 weeks</a>
-                </label>
+        <nav>
+            <div class="nav-profile">
+                <a class="a-profile" href="">
+                    Profile
+                    <img src="images/user-avatar-icon.png" alt="">
+                </a>
             </div>
-            <div class="login-forget">
-                <button class="login-btn">Log In</button>
-                <a class="forgot-pass" href="#forgot-pass">Forgot your password?</a>
-                <footer>Copyright © 2025 Raul Detesan</footer>
-                <p><a href="#terms-of-service">Terms of service</a> <span class="line">|</span> <a
-                        href="privacy-policy">Privacy
-                        Policy</a></p>
+
+            <div class="navbar-right">
+                <ul>
+                    <a href="">
+                        <li>Sign up</li>
+                    </a>
+                    <a href="">
+                        <li>Log in</li>
+                    </a>
+                    <a href="">
+                        <li>Clopotel</li>
+                    </a>
+                    <a href="">
+                        <li>Settings</li>
+                    </a>
+                </ul>
+            </div>
+
+        </nav>
+
+        <div class="main-container js-main-container">
+            <h1>Welcome <span>(insert name)</span> to the Task Management Tool</h1>
+
+            <div class="main-container-grid">
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
+                <div class="card">
+
+                </div>
             </div>
 
         </div>
 
     </div>
 
-
+    <script src="scripts/projects.js"></script>
+    <script src="scripts/index.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,322 @@
+body {
+    height: 90vh;
+    background-image: url("/TaskManagementToolFRONTEND/images/login.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: "Popins", sans-serif;
+    color: rgb(18, 12, 12);
+
+}
+
+header h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 0;
+    font-size: 50px;
+}
+
+.container {
+    width: 90vw;
+    height: 600px;
+    margin: 64px auto;
+    display: flex;
+
+}
+
+.left-container .special {
+    color: rgb(0, 60, 255);
+}
+
+.left-container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: green; */
+}
+
+.left-container h2 {
+    font-size: 4rem;
+    margin-top: 15%;
+}
+
+.left-container p {
+    font-size: 1.75rem;
+    margin-bottom: 64px;
+}
+
+.link-images {
+    width: 250px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.link-images .images-left {
+    width: 32px;
+    height: 32px;
+    padding: 0 10px;
+    transition: all 0.3s ease;
+}
+
+.link-images .images-left:hover {
+    transform: scale(1.15);
+}
+
+
+.right-container {
+    width: 50%;
+    height: 100%;
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.right-container::before {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 640px;
+    background: rgb(0, 60, 255);
+    background: radial-gradient(circle, rgba(148, 187, 233, 1) 0%, rgb(58, 120, 201) 100%);
+    z-index: -1;
+    border-radius: 10px;
+}
+
+.right-container h2 {
+    font-size: 4rem;
+    margin: 5% 0 0 0;
+    text-decoration: underline;
+}
+
+.right-container h3 {
+    font-size: 1.5rem;
+}
+
+.right-container a {
+    color: rgb(0, 60, 255);
+    font-weight: bold;
+}
+
+.right-container .label-email {
+    margin-top: 20px;
+    font-size: 32px;
+}
+
+.right-container .label-pass {
+    margin-top: 16px;
+    font-size: 32px;
+}
+
+.right-container .email-input,
+.pass-input {
+    border-radius: 5px;
+    height: 25px;
+    width: 250px;
+}
+
+.right-container .credentials-enter {
+    height: 200px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid blue; */
+}
+
+.right-container .forgot-pass {
+    margin-top: 16px;
+    color: rgb(0, 60, 255);
+    font-weight: bold;
+}
+
+.right-container .remember-me {
+    margin: 0;
+    width: 20px;
+    height: 15px;
+    border-radius: 3px;
+}
+
+.right-container .remember-me-label {
+    margin-top: 10px;
+}
+
+.right-container a {
+    color: rgb(0, 60, 255);
+    text-decoration: underline;
+}
+
+.login-forget {
+    /* border: 1px solid red; */
+    margin: 24px;
+    height: 250px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.login-forget .login-btn {
+    margin: 24px 0 0 7px;
+    width: 250px;
+    height: 32px;
+    color: white;
+    background: linear-gradient(rgb(0, 60, 255),
+            rgb(9, 5, 227),
+            rgb(10, 10, 214));
+
+    border-radius: 10px;
+    border: 1px solid white;
+    transition: all 0.5s ease;
+}
+
+.login-forget .login-btn:hover {
+    cursor: pointer;
+    opacity: 0.9;
+    transform: scale(1.15);
+}
+
+.login-forget footer {
+    margin-top: 50px;
+    color: rgb(0, 60, 255);
+}
+
+.login-forget a {
+    color: rgb(0, 60, 255);
+}
+
+.line {
+    color: black;
+}
+
+@media only screen and (max-width: 1350px) {
+
+    header h1 {
+        font-size: 32px;
+    }
+
+    .left-container h2 {
+        font-size: 32px;
+        margin-top: 0;
+    }
+
+    .left-container p {
+        font-size: 20px;
+        width: 110%;
+        text-align: center;
+    }
+
+
+    body {
+        background-size: auto;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .right-container {
+        margin-top: 64px;
+    }
+
+    .right-container h2 {
+        font-size: 30px;
+    }
+
+    .right-container h3 {
+        font-size: 18px;
+    }
+
+    .right-container::before {
+        content: "";
+        width: 110%;
+        height: 93%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .right-container h3 {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 620px) {
+    header h1 {
+        font-size: 28px;
+    }
+
+    .left-container h2 {
+        font-size: 28px;
+        margin-top: 0;
+    }
+
+    .left-container p {
+        font-size: 18px;
+        width: 110%;
+        text-align: center;
+    }
+
+
+    body {
+        background-size: auto;
+    }
+
+    .right-container {
+        margin-top: 60px;
+    }
+
+    .right-container h2 {
+        font-size: 24px;
+    }
+
+    .right-container h3 {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .right-container h3 a {
+        display: inline-block;
+    }
+
+    .right-container::before {
+        content: "";
+        width: 200px;
+        height: 90%;
+        padding-right: 20px;
+    }
+
+    .credentials-enter .label-pass {
+        font-size: 18px;
+    }
+
+    .credentials-enter .label-email {
+        font-size: 18px;
+    }
+
+    .credentials-enter .email-input,
+    .pass-input {
+        width: 70%;
+    }
+
+    .right-container .credentials-enter {
+        width: 200px;
+    }
+
+    .login-forget .login-btn {
+        width: 65%;
+    }
+
+    .login-forget .forgot-pass {
+        font-size: 14px;
+    }
+
+    .login-forget p a,
+    footer {
+        font-size: 13px;
+    }
+}
