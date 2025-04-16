@@ -18,21 +18,21 @@
             <p>Placeholder</p>
             <p class="p-dashboard">Dashboard</p>
             <div class="dashboard">
-                <ul>
+                <ul class="dashboard-ul">
                     <a href="">
-                        <li class="selected">Home</li>
+                        <li class="js-home selected">Home</li>
                     </a>
-                    <a href="#Option2" class="js-projects">
-                        <li>Projects</li>
+                    <a href="#Option2">
+                        <li class="js-projects">Projects</li>
                     </a>
-                    <a href="#Option3">
-                        <li>Option 3</li>
+                    <a href="#Option3" class="">
+                        <li class="js-option3">Option 3</li>
                     </a>
                     <a href="#Option4">
-                        <li>My Tasks</li>
+                        <li class="js-tasks">My Tasks</li>
                     </a>
                     <a href="#Option5">
-                        <li>Option 5</li>
+                        <li class="js-option5">Option 5</li>
                     </a>
                 </ul>
             </div>
@@ -66,56 +66,19 @@
         </nav>
 
         <div class="main-container js-main-container">
-            <h1>Welcome <span>(insert name)</span> to the Task Management Tool</h1>
+            <h1 class="main-container-h1">Welcome <span>(insert name)</span> to the Task Management Tool</h1>
 
-            <div class="main-container-grid">
-                <div class="card">
+            <div class="main-container-grid js-main-container-grid">
 
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
-                <div class="card">
-
-                </div>
             </div>
 
         </div>
 
     </div>
-
+    <script src="scripts/utils/selected.js"></script>
     <script src="scripts/projects.js"></script>
     <script src="scripts/index.js"></script>
+
 </body>
 
 </html>

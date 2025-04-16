@@ -4,6 +4,7 @@
     --hover-color: #87bdd8;
     --black-text: rgb(21, 20, 20);
     --main-container: #dbeef5;
+    --card-color: #87bdd8;
 
     --dashboard-text-dim: 28px;
     --aside-options-dim: 20px;
@@ -168,13 +169,53 @@ nav a {
 
 .main-container-grid {
     display: grid;
-    margin-left: 50px;
+    margin: 0px 25px;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 15px;
+}
+
+.card {
+    color: var(--black-text)
 }
 
 .main-container .card {
     width: 300px;
     height: 400px;
-    background-color: red;
+    background-color: var(--card-color);
+    border-radius: 10px;
+    transition: all 0.5s ease;
+}
+
+.main-container .card .card-top {
+    width: 100%;
+    margin: 5px 10px;
+}
+
+.main-container .card .card-description {
+    width: 95%;
+    max-height: 75%;
+    margin: 5px auto;
+    background-color: var(--main-container);
+    overflow-y: auto;
+}
+
+.main-container .card .card-top p {
+    margin: 0;
+    padding: 0;
+}
+
+.main-container .card .card-bottom p {
+    margin: 5px 0 5px 8px;
+}
+
+.main-container .card:hover {
+    scale: 1.03;
+}
+
+.main-container .js-main-container-grid .project-description {
+    height: 70%;
+    min-height: 50%;
+    max-height: 70%;
+    overflow: auto;
+    word-wrap: break-word;
 }
