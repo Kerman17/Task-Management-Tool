@@ -1,0 +1,22 @@
+:root {
+    --body-bkg-color: #d8dcdf;
+    --side-bar: #b7d7e8;
+    --hover-color: #87bdd8;
+    --black-text: rgb(21, 20, 20);
+    --main-container: #dbeef5;
+    --card-color: #87bdd8;
+
+    --dashboard-text-dim: 28px;
+    --aside-options-dim: 20px;
+
+}
+
+.js-home-card {
+    width: 300px;
+    height: 400px;
+    background-color: coral;
+}
+
+.main-container .main-container-h1 .special {
+    color: blue;
+}
